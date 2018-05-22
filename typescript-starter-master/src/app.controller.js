@@ -7,12 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var common_1 = require("@nestjs/common");
+var fs = require('fs');
+var contador = 0;
 var AppController = /** @class */ (function () {
-    function AppController(appService) {
-        this.appService = appService;
+    function AppController() {
     }
+    //constructor(private readonly appService: AppService) {}
     AppController.prototype.root = function () {
-        return this.appService.root();
+        var nombre = 'Gabriel Macias';
+        var html = fs.readFileSync(__dirname + '/html/contenido.html', 'utf8');
+        html = html.replace('{{nombre}}', nombre);
+        return html;
     };
     __decorate([
         common_1.Get()
